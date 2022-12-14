@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 10f;
+    Vector3 direction;
 
     void Update() {
         float xAxis = Input.GetAxis("Horizontal");
         float zAxis = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(xAxis, 0, zAxis);
-
-        transform.Translate(direction * speed * Time.deltaTime);
+        direction = new Vector3(xAxis, 0, zAxis);
 
         if(direction != Vector3.zero) {
             GetComponent<Animator>().SetBool("Running", true);
@@ -20,6 +19,9 @@ public class PlayerController : MonoBehaviour {
         else {
             GetComponent<Animator>().SetBool("Running", false);
         }
+    }
+    void FixedUpdate() {
+        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direction * speed * Time.deltaTime));
     }
 
 }
