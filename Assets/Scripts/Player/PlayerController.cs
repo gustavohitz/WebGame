@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     public float speed = 10f;
+    public LayerMask groundMask;
     Vector3 direction;
 
     void Update() {
@@ -22,6 +23,21 @@ public class PlayerController : MonoBehaviour {
     }
     void FixedUpdate() {
         GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direction * speed * Time.deltaTime));
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+
+        RaycastHit impact;
+
+        if(Physics.Raycast(ray, out impact, 100, groundMask)) {
+            Vector3 aimingPosition = impact.point - transform.position;
+
+            aimingPosition.y = transform.position.y;
+
+            Quaternion newRotation = Quaternion.LookRotation(aimingPosition);
+
+            GetComponent<Rigidbody>().MoveRotation(newRotation);
+        }
     }
 
 }
