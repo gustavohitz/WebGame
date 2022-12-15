@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
     public float speed = 10f;
     public LayerMask groundMask;
+    public GameObject gameOver;
+    public bool isAlive = true;
     Vector3 direction;
+
+    void Start() {
+        Time.timeScale = 1;
+    }
 
     void Update() {
         float xAxis = Input.GetAxis("Horizontal");
@@ -19,6 +26,12 @@ public class PlayerController : MonoBehaviour {
         }
         else {
             GetComponent<Animator>().SetBool("Running", false);
+        }
+
+        if(!isAlive) {
+            if(Input.GetButtonDown("Fire1")) {
+                SceneManager.LoadScene("game");
+            }
         }
     }
     void FixedUpdate() {

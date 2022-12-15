@@ -9,14 +9,23 @@ public class ZombieBase : MonoBehaviour {
     void FixedUpdate() {
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        //o colisor do player e do inimigo valem 1, logo a distancia é 2
+        Vector3 direction = player.transform.position - transform.position;
+
+        Quaternion newRotation = Quaternion.LookRotation(direction);
+        GetComponent<Rigidbody>().MoveRotation(newRotation);
+
         if(distance > gapBetweenPlayerAndEnemy) {
-            Vector3 direction = player.transform.position - transform.position;
-
             GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direction.normalized * speed * Time.deltaTime));
-
-            Quaternion newRotation = Quaternion.LookRotation(direction);
-            GetComponent<Rigidbody>().MoveRotation(newRotation);
+            GetComponent<Animator>().SetBool("Attacking", false);
         }
+        else {
+            GetComponent<Animator>().SetBool("Attacking", true);
+        }
+    }
+    
+    void EnemyAttack() {
+        Time.timeScale = 0;
+        player.GetComponent<PlayerController>().gameOver.SetActive(true);
+        player.GetComponent<PlayerController>().isAlive = false;
     }
 }
