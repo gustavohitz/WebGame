@@ -9,10 +9,15 @@ public class PlayerController : MonoBehaviour {
     public LayerMask groundMask;
     public GameObject gameOver;
     public bool isAlive = true;
-    Vector3 direction;
+    
+    private Vector3 direction;
+    private Rigidbody _rigidbody;
+    private Animator _playerAnimator;
 
     void Start() {
         Time.timeScale = 1;
+        _rigidbody = GetComponent<Rigidbody>();
+        _playerAnimator = GetComponent<Animator>();
     }
 
     void Update() {
@@ -22,10 +27,10 @@ public class PlayerController : MonoBehaviour {
         direction = new Vector3(xAxis, 0, zAxis);
 
         if(direction != Vector3.zero) {
-            GetComponent<Animator>().SetBool("Running", true);
+            _playerAnimator.SetBool("Running", true);
         }
         else {
-            GetComponent<Animator>().SetBool("Running", false);
+            _playerAnimator.SetBool("Running", false);
         }
 
         if(!isAlive) {
@@ -35,7 +40,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
     void FixedUpdate() {
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direction * speed * Time.deltaTime));
+        _rigidbody.MovePosition(_rigidbody.position + (direction * speed * Time.deltaTime));
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
@@ -49,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 
             Quaternion newRotation = Quaternion.LookRotation(aimingPosition);
 
-            GetComponent<Rigidbody>().MoveRotation(newRotation);
+            _rigidbody.MoveRotation(newRotation);
         }
     }
 

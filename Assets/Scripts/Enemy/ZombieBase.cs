@@ -8,11 +8,17 @@ public class ZombieBase : MonoBehaviour {
     public float gapBetweenPlayerAndEnemy = 2.5f;
     public string tagToFind = "Player";
 
+    private Rigidbody _rigidbody;
+    private Animator _zombieAnimator;
+
 
     void Start() {
         player = GameObject.FindWithTag(tagToFind);
         int generateZombieType = Random.Range(1, 28); //um a mais do que a quantidade certa
         transform.GetChild(generateZombieType).gameObject.SetActive(true);
+
+        _rigidbody = GetComponent<Rigidbody>();
+        _zombieAnimator = GetComponent<Animator>();
     }
     void FixedUpdate() {
         float distance = Vector3.Distance(transform.position, player.transform.position);
@@ -20,14 +26,14 @@ public class ZombieBase : MonoBehaviour {
         Vector3 direction = player.transform.position - transform.position;
 
         Quaternion newRotation = Quaternion.LookRotation(direction);
-        GetComponent<Rigidbody>().MoveRotation(newRotation);
+        _rigidbody.MoveRotation(newRotation);
 
         if(distance > gapBetweenPlayerAndEnemy) {
-            GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direction.normalized * speed * Time.deltaTime));
-            GetComponent<Animator>().SetBool("Attacking", false);
+            _rigidbody.MovePosition(_rigidbody.position + (direction.normalized * speed * Time.deltaTime));
+            _zombieAnimator.SetBool("Attacking", false);
         }
         else {
-            GetComponent<Animator>().SetBool("Attacking", true);
+            _zombieAnimator.SetBool("Attacking", true);
         }
     }
     

@@ -7,9 +7,15 @@ public class Bullet : MonoBehaviour {
     public float speed = 20f;
     public float timeToDestroy = 3f;
     public string tagToCheck = "Enemy";
+
+    private Rigidbody _rigidbody;
+
+    void Start() {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
     
     void FixedUpdate() {
-        GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + transform.forward * speed * Time.deltaTime);
+        _rigidbody.MovePosition(_rigidbody.position + transform.forward * speed * Time.deltaTime);
         Destroy(gameObject, timeToDestroy);
     }
     void OnTriggerEnter(Collider other) {
