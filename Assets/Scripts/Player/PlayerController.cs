@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public LayerMask groundMask;
     public GameObject gameOver;
     public int life = 100;
+    public UIManager uiManagerScript;
     
     private Vector3 direction;
     private Rigidbody _rigidbody;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeDamage(int damage) {
         life -= damage;
+        uiManagerScript.UpdateLifeSlider();
 
         if(life <= 0) {
             Time.timeScale = 0;
