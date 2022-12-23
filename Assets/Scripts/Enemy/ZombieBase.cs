@@ -38,8 +38,7 @@ public class ZombieBase : MonoBehaviour {
     }
     
     void EnemyAttack() {
-        Time.timeScale = 0;
-        player.GetComponent<PlayerController>().gameOver.SetActive(true);
-        player.GetComponent<PlayerController>().isAlive = false;
+        int causeDamage = Random.Range(20, 30);
+        player.GetComponent<PlayerController>().TakeDamage(causeDamage);
     }
 }

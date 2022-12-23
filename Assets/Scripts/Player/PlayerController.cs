@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed = 10f;
     public LayerMask groundMask;
     public GameObject gameOver;
-    public bool isAlive = true;
+    public int life = 100;
     
     private Vector3 direction;
     private Rigidbody _rigidbody;
@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
             _playerAnimator.SetBool("Running", false);
         }
 
-        if(!isAlive) {
+        if(life <= 0) {
             if(Input.GetButtonDown("Fire1")) {
                 SceneManager.LoadScene("game");
             }
@@ -55,6 +55,15 @@ public class PlayerController : MonoBehaviour {
             Quaternion newRotation = Quaternion.LookRotation(aimingPosition);
 
             _rigidbody.MoveRotation(newRotation);
+        }
+    }
+
+    public void TakeDamage(int damage) {
+        life -= damage;
+
+        if(life <= 0) {
+            Time.timeScale = 0;
+            gameOver.SetActive(true);
         }
     }
 
