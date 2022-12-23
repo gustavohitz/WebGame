@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour {
         playerControllerScript = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
         lifeSlider.maxValue = playerControllerScript.life;
+        UpdateLifeSlider();
     }
 
     public void UpdateLifeSlider() {
