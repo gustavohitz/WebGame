@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -28.867718, y: 2.638901, z: -20.008}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -111,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   timeToDestroy: 3
+  tagToCheck: Enemy
+  deathSFX: {fileID: 8300000, guid: dc61b4efdf2d942769fd3aad9b46a737, type: 3}
 --- !u!54 &-3293576130955309066
 Rigidbody:
   m_ObjectHideFlags: 0

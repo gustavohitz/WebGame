@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
     public float speed = 20f;
     public float timeToDestroy = 3f;
     public string tagToCheck = "Enemy";
+    public AudioClip deathSFX;
 
     private Rigidbody _rigidbody;
 
@@ -20,6 +21,7 @@ public class Bullet : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other) {
         if(other.tag == tagToCheck) {
+            AudioManager.instance.PlayOneShot(deathSFX);
             Destroy(other.gameObject);
         }
         

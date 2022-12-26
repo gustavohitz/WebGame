@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject gameOver;
     public int life = 100;
     public UIManager uiManagerScript;
+    public AudioClip damageSFX;
     
     private Vector3 direction;
     private Rigidbody _rigidbody;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour {
     public void TakeDamage(int damage) {
         life -= damage;
         uiManagerScript.UpdateLifeSlider();
+        AudioManager.instance.PlayOneShot(damageSFX);
 
         if(life <= 0) {
             Time.timeScale = 0;
