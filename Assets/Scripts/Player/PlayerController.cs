@@ -12,28 +12,24 @@ public class PlayerController : MonoBehaviour {
     public UIManager uiManagerScript;
     public AudioClip damageSFX;
     
-    private Vector3 direction;
-    private Rigidbody _rigidbody;
-    private Animator _playerAnimator;
+    private Vector3 _direction;
+    private PlayerMovement _playerMovement;
+    private CharacterAnimation _playerAnimation;
 
     void Start() {
         Time.timeScale = 1;
-        _rigidbody = GetComponent<Rigidbody>();
-        _playerAnimator = GetComponent<Animator>();
+
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerAnimation = GetComponent<CharacterAnimation>();
     }
 
     void Update() {
         float xAxis = Input.GetAxis("Horizontal");
         float zAxis = Input.GetAxis("Vertical");
 
-        direction = new Vector3(xAxis, 0, zAxis);
+        _direction = new Vector3(xAxis, 0, zAxis);
 
-        if(direction != Vector3.zero) {
-            _playerAnimator.SetBool("Running", true);
-        }
-        else {
-            _playerAnimator.SetBool("Running", false);
-        }
+        _playerAnimation.PlayerRunningAnimation(_direction.magnitude); //magnitude = tamanho do vetor
 
         if(life <= 0) {
             if(Input.GetButtonDown("Fire1")) {
@@ -42,22 +38,9 @@ public class PlayerController : MonoBehaviour {
         }
     }
     void FixedUpdate() {
-        _rigidbody.MovePosition(_rigidbody.position + (direction * speed * Time.deltaTime));
+        _playerMovement.Move(_direction, speed);
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
-
-        RaycastHit impact;
-
-        if(Physics.Raycast(ray, out impact, 100, groundMask)) {
-            Vector3 aimingPosition = impact.point - transform.position;
-
-            aimingPosition.y = transform.position.y;
-
-            Quaternion newRotation = Quaternion.LookRotation(aimingPosition);
-
-            _rigidbody.MoveRotation(newRotation);
-        }
+        _playerMovement.PlayerRotation(groundMask);
     }
 
     public void TakeDamage(int damage) {
