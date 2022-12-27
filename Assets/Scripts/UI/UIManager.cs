@@ -12,12 +12,12 @@ public class UIManager : MonoBehaviour {
     void Start() {
         playerControllerScript = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
 
-        lifeSlider.maxValue = playerControllerScript.life;
+        lifeSlider.maxValue = playerControllerScript.playerStatus.life;
         UpdateLifeSlider();
     }
 
     public void UpdateLifeSlider() {
-        lifeSlider.value = playerControllerScript.life;
+        lifeSlider.value = playerControllerScript.playerStatus.life;
     }
     
 }

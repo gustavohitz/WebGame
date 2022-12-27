@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ZombieBase : MonoBehaviour {
     public GameObject player;
-    public float speed = 5;
     public float gapBetweenPlayerAndEnemy = 2.5f;
     public string tagToFind = "Player";
 
     private CharacterMovement _characterMovement;
     private CharacterAnimation _characterAnimation;
+    private Status _status;
 
 
     void Start() {
@@ -17,6 +17,7 @@ public class ZombieBase : MonoBehaviour {
 
         _characterMovement = GetComponent<CharacterMovement>();
         _characterAnimation = GetComponent<CharacterAnimation>();
+        _status = GetComponent<Status>();
 
         RandomZombieGenerator();
     }
@@ -28,7 +29,7 @@ public class ZombieBase : MonoBehaviour {
         _characterMovement.Rotate(direction);
 
         if(distance > gapBetweenPlayerAndEnemy) {
-            _characterMovement.Move(direction, speed);
+            _characterMovement.Move(direction, _status.speed);
             _characterAnimation.AttackAnimation(false);
         }
         else {
