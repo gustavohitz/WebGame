@@ -8,37 +8,41 @@ public class ZombieBase : MonoBehaviour {
     public float gapBetweenPlayerAndEnemy = 2.5f;
     public string tagToFind = "Player";
 
-    private Rigidbody _rigidbody;
-    private Animator _zombieAnimator;
+    private CharacterMovement _characterMovement;
+    private CharacterAnimation _characterAnimation;
 
 
     void Start() {
         player = GameObject.FindWithTag(tagToFind);
-        int generateZombieType = Random.Range(1, 28); //um a mais do que a quantidade certa
-        transform.GetChild(generateZombieType).gameObject.SetActive(true);
 
-        _rigidbody = GetComponent<Rigidbody>();
-        _zombieAnimator = GetComponent<Animator>();
+        _characterMovement = GetComponent<CharacterMovement>();
+        _characterAnimation = GetComponent<CharacterAnimation>();
+
+        RandomZombieGenerator();
     }
     void FixedUpdate() {
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
         Vector3 direction = player.transform.position - transform.position;
 
-        Quaternion newRotation = Quaternion.LookRotation(direction);
-        _rigidbody.MoveRotation(newRotation);
+        _characterMovement.Rotate(direction);
 
         if(distance > gapBetweenPlayerAndEnemy) {
-            _rigidbody.MovePosition(_rigidbody.position + (direction.normalized * speed * Time.deltaTime));
-            _zombieAnimator.SetBool("Attacking", false);
+            _characterMovement.Move(direction, speed);
+            _characterAnimation.AttackAnimation(false);
         }
         else {
-            _zombieAnimator.SetBool("Attacking", true);
+            _characterAnimation.AttackAnimation(true);
         }
     }
     
     void EnemyAttack() {
         int causeDamage = Random.Range(20, 30);
         player.GetComponent<PlayerController>().TakeDamage(causeDamage);
+    }
+
+    void RandomZombieGenerator() {
+        int generateZombieType = Random.Range(1, 28); //um a mais do que a quantidade certa
+        transform.GetChild(generateZombieType).gameObject.SetActive(true);
     }
 }
