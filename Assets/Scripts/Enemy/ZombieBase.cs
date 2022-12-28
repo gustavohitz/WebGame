@@ -11,10 +11,11 @@ public class ZombieBase : MonoBehaviour, IKillable {
 
     private CharacterMovement _characterMovement;
     private CharacterAnimation _characterAnimation;
-    private Status _status;
+    private EnemyStatus _enemyStatus;
     private Vector3 _randomPosition;
-    private float _sphereMultiplier = 10f;
     private Vector3 direction;
+    private float _sphereMultiplier = 10f;
+    private float _wanderTimer;
 
 
     void Start() {
@@ -22,28 +23,25 @@ public class ZombieBase : MonoBehaviour, IKillable {
 
         _characterMovement = GetComponent<CharacterMovement>();
         _characterAnimation = GetComponent<CharacterAnimation>();
-        _status = GetComponent<Status>();
+        _enemyStatus = GetComponent<EnemyStatus>();
 
         RandomZombieGenerator();
     }
     void FixedUpdate() {
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
-        //direction = player.transform.position - transform.position;
-
         _characterMovement.Rotate(direction);
+
+        _characterAnimation.RunningAnimation(direction.magnitude);
 
         if(distance > biggerGapBetweenPlayerAndEnemy) {
             Wander();
         }
         else if(distance > gapBetweenPlayerAndEnemy) {
-            direction = player.transform.position - transform.position;
-
-            _characterMovement.Move(direction, _status.speed);
-            _characterAnimation.AttackAnimation(false);
+            PursuitPlayer();
         }
         else {
-            _characterAnimation.AttackAnimation(true);
+            PlayAttackAnimation();
         }
     }
     
@@ -57,9 +55,27 @@ public class ZombieBase : MonoBehaviour, IKillable {
         transform.GetChild(generateZombieType).gameObject.SetActive(true);
     }
     void Wander() {
-        _randomPosition = RandomizePosition();
-        direction = _randomPosition - transform.position;
-        _characterMovement.Move(direction, _status.speed);
+        _wanderTimer -= Time.deltaTime;
+        if(_wanderTimer <= 0) {
+            _randomPosition = RandomizePosition();
+            _wanderTimer = _enemyStatus.timeBetweenRandomPosition;
+        }
+
+        bool isNearEnough = Vector3.Distance(transform.position, _randomPosition) <= 0.05; //isso é um teste que retorna um valor verdadeiro ou falso
+
+        if(isNearEnough == false) {
+            direction = _randomPosition - transform.position;
+            _characterMovement.Move(direction, _enemyStatus.speed);
+        }
+    }
+    void PursuitPlayer() {
+        direction = player.transform.position - transform.position;
+
+        _characterMovement.Move(direction, _enemyStatus.speed);
+        _characterAnimation.AttackAnimation(false);
+    }
+    void PlayAttackAnimation() {
+        _characterAnimation.AttackAnimation(true);
     }
     Vector3 RandomizePosition() {
         Vector3 position = Random.insideUnitSphere * _sphereMultiplier; //o inimigo vaga dentro desse raio criado
@@ -70,8 +86,8 @@ public class ZombieBase : MonoBehaviour, IKillable {
     }
 
     public void TakeDamage(int damage) {
-        _status.life -= damage;
-        if(_status.life <= 0) {
+        _enemyStatus.life -= damage;
+        if(_enemyStatus.life <= 0) {
             Death();
         }
     }

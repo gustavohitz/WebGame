@@ -14,7 +14,7 @@ public class CharacterAnimation : MonoBehaviour {
         _characterAnimator.SetBool("Attacking", state);
     }
 
-    public void PlayerRunningAnimation(float movingValue) {
+    public void RunningAnimation(float movingValue) {
         _characterAnimator.SetFloat("Running", movingValue);
     }
    

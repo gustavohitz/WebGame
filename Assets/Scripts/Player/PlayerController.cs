@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour, IKillable {
 
         _direction = new Vector3(xAxis, 0, zAxis);
 
-        _playerAnimation.PlayerRunningAnimation(_direction.magnitude); //magnitude = tamanho do vetor
+        _playerAnimation.RunningAnimation(_direction.magnitude); //magnitude = tamanho do vetor
 
         GameOver();
     }
