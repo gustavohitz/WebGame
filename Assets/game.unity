@@ -8388,7 +8388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -143, y: 43}
+  m_AnchoredPosition: {x: -119, y: 99}
   m_SizeDelta: {x: 361.8688, y: 178.169}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1570952321
@@ -8413,7 +8413,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'You Lose!
 
-    Click to start over'
+    Press Enter to start over'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8440,7 +8440,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 81.8
+  m_fontSize: 74.3
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8476,7 +8476,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -45.646408, y: 0, z: -330.2243, w: -72.92381}
+  m_margin: {x: -170.3311, y: 0, z: -396.3222, w: -72.92381}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10068,29 +10068,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1570952319}
     - target: {fileID: 1105996794, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: damageSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: 053faf4f040a84c0980164f8c6435390, type: 3}
-    - target: {fileID: 1105996794, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: uiManagerScript
       value: 
       objectReference: {fileID: 2137609017}
-    - target: {fileID: 1105996797, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1105996798, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1105996798, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1105996799, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
-      propertyPath: bulletSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: c6e31ee75081c4f399520cab17d62559, type: 3}
     - target: {fileID: 1884102019447498, guid: 4b3bb44effa49480d8d18049684cc33a, type: 3}
       propertyPath: m_Name
       value: Player

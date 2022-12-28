@@ -660,9 +660,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 5
   gapBetweenPlayerAndEnemy: 2.5
   tagToFind: Player
+  deathSFX: {fileID: 8300000, guid: dc61b4efdf2d942769fd3aad9b46a737, type: 3}
 --- !u!54 &5778004574093307327
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999ffc688982643a9a60d8efeca81904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 100
+  startLife: 1
   life: 0
   speed: 5
 --- !u!1 &1065480718027956

@@ -21,8 +21,7 @@ public class Bullet : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other) {
         if(other.tag == tagToCheck) {
-            AudioManager.instance.PlayOneShot(deathSFX);
-            Destroy(other.gameObject);
+            other.GetComponent<ZombieBase>().TakeDamage(1);
         }
         
         Destroy(gameObject);

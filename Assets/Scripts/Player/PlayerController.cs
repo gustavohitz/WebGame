@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour, IKillable {
 
     public LayerMask groundMask;
     public GameObject gameOver;
@@ -31,11 +31,7 @@ public class PlayerController : MonoBehaviour {
 
         _playerAnimation.PlayerRunningAnimation(_direction.magnitude); //magnitude = tamanho do vetor
 
-        if(playerStatus.life <= 0) {
-            if(Input.GetButtonDown("Fire1")) {
-                SceneManager.LoadScene("game");
-            }
-        }
+        GameOver();
     }
     void FixedUpdate() {
         _playerMovement.Move(_direction, playerStatus.speed);
@@ -49,8 +45,20 @@ public class PlayerController : MonoBehaviour {
         AudioManager.instance.PlayOneShot(damageSFX);
 
         if(playerStatus.life <= 0) {
-            Time.timeScale = 0;
-            gameOver.SetActive(true);
+            Death();
+        }
+    }
+
+    public void Death() {
+        Time.timeScale = 0;
+        gameOver.SetActive(true);
+    }
+
+    public void GameOver() {
+        if(playerStatus.life <= 0) {
+            if(Input.GetKeyDown(KeyCode.Return)) {
+                SceneManager.LoadScene("game");
+            }
         }
     }
 

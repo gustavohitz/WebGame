@@ -10,7 +10,7 @@ public class Status : MonoBehaviour{
     public int life;
     public float speed = 5f;
 
-    void Start() {
+    void Awake() {
         life = startLife;
     }
     

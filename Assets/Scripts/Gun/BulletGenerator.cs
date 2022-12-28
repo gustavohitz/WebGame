@@ -12,8 +12,10 @@ public class BulletGenerator : MonoBehaviour {
     }
     void Shoot() {
         if(Input.GetButtonDown("Fire1")) {
-            Instantiate(bullet, bulletPosition.transform.position, bulletPosition.transform.rotation);
-            AudioManager.instance.PlayOneShot(bulletSFX);
+            if(Time.timeScale != 0) {
+                Instantiate(bullet, bulletPosition.transform.position, bulletPosition.transform.rotation);
+                AudioManager.instance.PlayOneShot(bulletSFX);
+            }    
         }
     }    
 }
