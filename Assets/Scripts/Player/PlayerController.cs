@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IKillable {
 
@@ -16,8 +15,6 @@ public class PlayerController : MonoBehaviour, IKillable {
     private CharacterAnimation _playerAnimation;
 
     void Start() {
-        Time.timeScale = 1;
-        
         playerStatus = GetComponent<Status>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerAnimation = GetComponent<CharacterAnimation>();
@@ -50,16 +47,11 @@ public class PlayerController : MonoBehaviour, IKillable {
     }
 
     public void Death() {
-        Time.timeScale = 0;
-        gameOver.SetActive(true);
+        uiManagerScript.ShowGameOverPanel();
     }
 
     public void GameOver() {
-        if(playerStatus.life <= 0) {
-            if(Input.GetKeyDown(KeyCode.Return)) {
-                SceneManager.LoadScene("game");
-            }
-        }
+        
     }
 
 }
