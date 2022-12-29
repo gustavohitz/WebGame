@@ -75,6 +75,8 @@ public class ZombieBase : MonoBehaviour, IKillable {
         _characterAnimation.AttackAnimation(false);
     }
     void PlayAttackAnimation() {
+        direction = player.transform.position - transform.position;
+
         _characterAnimation.AttackAnimation(true);
     }
     Vector3 RandomizePosition() {
