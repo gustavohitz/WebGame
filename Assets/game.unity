@@ -12200,6 +12200,7 @@ MonoBehaviour:
   lifeSlider: {fileID: 289354283}
   GameOverPanel: {fileID: 1391677022}
   survivingTimeTxt: {fileID: 1510832788}
+  hiScoreTxt: {fileID: 1348430468}
 --- !u!1001 &589129824993222861
 PrefabInstance:
   m_ObjectHideFlags: 0

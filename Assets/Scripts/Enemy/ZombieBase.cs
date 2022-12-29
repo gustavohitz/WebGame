@@ -98,7 +98,4 @@ public class ZombieBase : MonoBehaviour, IKillable {
         AudioManager.instance.PlayOneShot(deathSFX);
         Destroy(gameObject);
     }
-    public void GameOver() {
-        
-    }
 }

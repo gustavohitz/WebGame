@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IKillable {
+public class PlayerController : MonoBehaviour, IKillable, ICureable {
 
     public LayerMask groundMask;
     public GameObject gameOver;
@@ -27,8 +27,6 @@ public class PlayerController : MonoBehaviour, IKillable {
         _direction = new Vector3(xAxis, 0, zAxis);
 
         _playerAnimation.RunningAnimation(_direction.magnitude); //magnitude = tamanho do vetor
-
-        GameOver();
     }
     void FixedUpdate() {
         _playerMovement.Move(_direction, playerStatus.speed);
@@ -50,8 +48,13 @@ public class PlayerController : MonoBehaviour, IKillable {
         uiManagerScript.ShowGameOverPanel();
     }
 
-    public void GameOver() {
-        
-    }
+    public void Cure(int cureAmount) {
+        playerStatus.life += cureAmount;
 
+        if(playerStatus.life > playerStatus.startLife) {
+            playerStatus.life = playerStatus.startLife;
+        }
+        
+        uiManagerScript.UpdateLifeSlider();
+    }
 }
