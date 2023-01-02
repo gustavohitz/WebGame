@@ -8,6 +8,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
     public float biggerGapBetweenPlayerAndEnemy = 15f;
     public string tagToFind = "Player";
     public AudioClip deathSFX;
+    public GameObject medkitPrefab;
 
     private CharacterMovement _characterMovement;
     private CharacterAnimation _characterAnimation;
@@ -16,6 +17,8 @@ public class ZombieBase : MonoBehaviour, IKillable {
     private Vector3 direction;
     private float _sphereMultiplier = 10f;
     private float _wanderTimer;
+    private float _chanceOfCreatingMedkit = 0.1f;
+    private UIManager _uIManagerScript;
 
 
     void Start() {
@@ -24,6 +27,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
         _characterMovement = GetComponent<CharacterMovement>();
         _characterAnimation = GetComponent<CharacterAnimation>();
         _enemyStatus = GetComponent<EnemyStatus>();
+        _uIManagerScript = GameObject.FindObjectOfType(typeof(UIManager)) as UIManager; //se não tiver o "as" ele procura como GameObejct. O as converte em script
 
         RandomZombieGenerator();
     }
@@ -97,5 +101,13 @@ public class ZombieBase : MonoBehaviour, IKillable {
     public void Death() {
         AudioManager.instance.PlayOneShot(deathSFX);
         Destroy(gameObject);
+        RandomizeMedkitCreation(_chanceOfCreatingMedkit);
+        _uIManagerScript.UpdateKilledZombiesAmount();
+    }
+
+    void RandomizeMedkitCreation(float creationPercentage) {
+        if(Random.value <= creationPercentage) {
+            Instantiate(medkitPrefab, transform.position, Quaternion.identity); //rotacão zerada
+        }
     }
 }

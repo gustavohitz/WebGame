@@ -664,6 +664,7 @@ MonoBehaviour:
   biggerGapBetweenPlayerAndEnemy: 15
   tagToFind: Player
   deathSFX: {fileID: 8300000, guid: dc61b4efdf2d942769fd3aad9b46a737, type: 3}
+  medkitPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
 --- !u!54 &5778004574093307327
 Rigidbody:
   m_ObjectHideFlags: 0

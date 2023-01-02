@@ -11,9 +11,11 @@ public class UIManager : MonoBehaviour {
     public GameObject GameOverPanel;
     public TextMeshProUGUI survivingTimeTxt;
     public TextMeshProUGUI hiScoreTxt;
+    public TextMeshProUGUI killedZombiesAmountText;
 
     private PlayerController playerControllerScript;
     private float _savedHiScore;
+    private int _killedZombiesAmount;
 
     void Start() {
         Time.timeScale = 1;
@@ -38,6 +40,12 @@ public class UIManager : MonoBehaviour {
             hiScoreTxt.text = string.Format("HiScore = {0}min and {1}s", min, sec);
             PlayerPrefs.SetFloat("HiScore", _savedHiScore);
         }
+    }
+
+    public void UpdateKilledZombiesAmount() {
+        _killedZombiesAmount++;
+
+        killedZombiesAmountText.text = string.Format("x {0}", _killedZombiesAmount);
     }
 
     public void UpdateLifeSlider() {
