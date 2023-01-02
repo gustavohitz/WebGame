@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : CharacterMovement {
 
+    Vector3 aimingPosition;
+
     public void PlayerRotation(LayerMask groundMask) {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
@@ -18,5 +20,4 @@ public class PlayerMovement : CharacterMovement {
             Rotate(aimingPosition);
         }
     }
- 
-}
+}    
