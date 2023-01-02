@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1063500868937916, guid: 35861510587b7489780fe86970823679, type: 3}
-  timeToGenerateZombie: 2
+  timeToGenerateZombie: 1
   zombieLayer:
     serializedVersion: 2
     m_Bits: 768

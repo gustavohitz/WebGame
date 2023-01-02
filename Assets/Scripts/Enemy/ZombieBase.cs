@@ -9,6 +9,9 @@ public class ZombieBase : MonoBehaviour, IKillable {
     public string tagToFind = "Player";
     public AudioClip deathSFX;
     public GameObject medkitPrefab;
+    
+    [HideInInspector]
+    public ZombieGenerator zombieGenerator;
 
     private CharacterMovement _characterMovement;
     private CharacterAnimation _characterAnimation;
@@ -103,6 +106,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
         Destroy(gameObject);
         RandomizeMedkitCreation(_chanceOfCreatingMedkit);
         _uIManagerScript.UpdateKilledZombiesAmount();
+        zombieGenerator.DecreaseZombieAmount();
     }
 
     void RandomizeMedkitCreation(float creationPercentage) {
