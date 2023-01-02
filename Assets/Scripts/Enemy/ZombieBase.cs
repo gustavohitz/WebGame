@@ -65,7 +65,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
         _wanderTimer -= Time.deltaTime;
         if(_wanderTimer <= 0) {
             _randomPosition = RandomizePosition();
-            _wanderTimer = _enemyStatus.timeBetweenRandomPosition;
+            _wanderTimer += _enemyStatus.timeBetweenRandomPosition + Random.Range(-1f, 1f);
         }
 
         bool isNearEnough = Vector3.Distance(transform.position, _randomPosition) <= 0.05; //isso é um teste que retorna um valor verdadeiro ou falso
