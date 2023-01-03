@@ -18,5 +18,10 @@ public class CharacterMovement : MonoBehaviour {
         Quaternion newRotation = Quaternion.LookRotation(direction);
         _rigidbody.MoveRotation(newRotation);
     }
+    public void FallAfterDeath() {
+        //_rigidbody.constraints = RigidbodyConstraints.None; //desabilita todas as restrições
+        _rigidbody.velocity = Vector3.zero;
+        GetComponent<Collider>().enabled = false;
+    }
 
 }

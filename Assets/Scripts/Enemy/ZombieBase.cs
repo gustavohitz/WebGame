@@ -21,6 +21,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
     private float _sphereMultiplier = 10f;
     private float _wanderTimer;
     private float _chanceOfCreatingMedkit = 0.1f;
+    private float _timeToDestroyObject = 2f;
     private UIManager _uIManagerScript;
 
 
@@ -103,7 +104,10 @@ public class ZombieBase : MonoBehaviour, IKillable {
 
     public void Death() {
         AudioManager.instance.PlayOneShot(deathSFX);
-        Destroy(gameObject);
+        Destroy(gameObject, _timeToDestroyObject);
+        _characterAnimation.DeathAnimation();
+        _characterMovement.FallAfterDeath();
+        this.enabled = false;
         RandomizeMedkitCreation(_chanceOfCreatingMedkit);
         _uIManagerScript.UpdateKilledZombiesAmount();
         zombieGenerator.DecreaseZombieAmount();

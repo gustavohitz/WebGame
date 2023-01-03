@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 5375
+  controlID: 9435
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 5376
+  controlID: 9436
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 5377
+  controlID: 9437
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -187,8 +187,8 @@ MonoBehaviour:
     y: 0
     width: 496.5
     height: 808.5
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -270,8 +270,8 @@ MonoBehaviour:
     y: 0
     width: 1036.5
     height: 808.5
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -694,14 +694,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.6594376
+    - e00: 0.69726217
       e01: 0
       e02: 0
-      e03: 145.96695
+      e03: 95.60306
       e10: 0
-      e11: 0.6594376
+      e11: 0.69726217
       e12: 0
-      e13: 46.93447
+      e13: 300.80402
       e20: 0
       e21: 0
       e22: 1
@@ -711,9 +711,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: ae4b44ff3c932410a836c24eda8b655d, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: df50317b4332b4a30ba3363acb3e9d52, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -3426525964115693603, guid: ae4b44ff3c932410a836c24eda8b655d, type: 2}
+  - m_Target: {fileID: 1799704881021816553, guid: df50317b4332b4a30ba3363acb3e9d52, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -821,22 +821,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Interface
+    - Assets/Scripts/Animation
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Interface
+  - Assets/Scripts/Animation
   m_LastFoldersGridSize: 16
   m_LastProjectPath: /Users/gustavohitz/Desktop/stuff/GitProjects/WebGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fc560000
-    m_LastClickedID: 22268
-    m_ExpandedIDs: 00000000b656000000ca9a3b
+    m_SelectedIDs: 661c0100
+    m_LastClickedID: 72806
+    m_ExpandedIDs: 00000000b65600000657000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -892,7 +892,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c6230000ee6c0000
+    m_ExpandedInstanceIDs: c6230000ee6c0000e2190100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -978,7 +978,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 20050
+  m_LastSelectedObjectID: -3430
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -998,8 +998,8 @@ MonoBehaviour:
     y: 0
     width: 524
     height: 1337
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
