@@ -59,7 +59,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
     }
 
     void RandomZombieGenerator() {
-        int generateZombieType = Random.Range(1, 27); //um a mais do que a quantidade certa
+        int generateZombieType = Random.Range(1, transform.childCount); //um a mais do que a quantidade certa
         transform.GetChild(generateZombieType).gameObject.SetActive(true);
     }
     void Wander() {

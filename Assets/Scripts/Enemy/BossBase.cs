@@ -12,6 +12,8 @@ public class BossBase : MonoBehaviour, IKillable {
     private CharacterMovement _bossMovement;
     private float _timeToDestroyGameObject = 2f;
 
+    public GameObject medkitPrefab;
+
     void Start() {
         _player = GameObject.FindWithTag("Player").transform;
         _agent = GetComponent<NavMeshAgent>();
@@ -61,6 +63,7 @@ public class BossBase : MonoBehaviour, IKillable {
         _bossMovement.FallAfterDeath();
         this.enabled = false;
         _agent.enabled = false;
+        Instantiate(medkitPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject, _timeToDestroyGameObject);
     }
 }
