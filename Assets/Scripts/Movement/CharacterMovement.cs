@@ -23,5 +23,11 @@ public class CharacterMovement : MonoBehaviour {
         _rigidbody.velocity = Vector3.zero;
         GetComponent<Collider>().enabled = false;
     }
+    public void SmoothRotation(Vector3 direction) {
+        var speed = 20;
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, speed * Time.deltaTime, 0.0f);
+        Quaternion newRotation = Quaternion.LookRotation(direction);
+        _rigidbody.MoveRotation(newRotation);
+    }
 
 }
