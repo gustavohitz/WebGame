@@ -5,24 +5,35 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
 
     public float speed = 20f;
-    public float timeToDestroy = 3f;
-    public string tagToCheck = "Enemy";
     public AudioClip deathSFX;
-
     private Rigidbody _rigidbody;
 
     void Start() {
         _rigidbody = GetComponent<Rigidbody>();
     }
+    void Update() {
+        Destroy(gameObject, 1);
+    }
     
     void FixedUpdate() {
         _rigidbody.MovePosition(_rigidbody.position + transform.forward * speed * Time.deltaTime);
-        Destroy(gameObject, timeToDestroy);
     }
     void OnTriggerEnter(Collider other) {
-        if(other.tag == tagToCheck) {
+        switch(other.tag) {
+            case "Enemy":
+                other.GetComponent<ZombieBase>().TakeDamage(1);
+                break;
+
+            case "Boss":
+                other.GetComponent<BossBase>().TakeDamage(1);
+                break;
+        }
+        /*if(other.tag == "Enemy") {
             other.GetComponent<ZombieBase>().TakeDamage(1);
         }
+        else if(other.tag == "Boss") {
+            other.GetComponent<BossBase>().TakeDamage(1);
+        }*/
         
         Destroy(gameObject);
     }

@@ -20,6 +20,7 @@ public class CharacterMovement : MonoBehaviour {
     }
     public void FallAfterDeath() {
         //_rigidbody.constraints = RigidbodyConstraints.None; //desabilita todas as restrições
+        //_rigidbody.isKinematic = false;
         _rigidbody.velocity = Vector3.zero;
         GetComponent<Collider>().enabled = false;
     }

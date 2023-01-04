@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossBase : MonoBehaviour {
+public class BossBase : MonoBehaviour, IKillable {
 
     private Transform _player;
     private NavMeshAgent _agent;
     private Status _bossStatus;
     private CharacterAnimation _bossAnimation;
     private CharacterMovement _bossMovement;
+    private float _timeToDestroyGameObject = 2f;
 
     void Start() {
         _player = GameObject.FindWithTag("Player").transform;
@@ -43,5 +44,23 @@ public class BossBase : MonoBehaviour {
     void NotAttacking() {
         _bossAnimation.AttackAnimation(false);
     }
+    void EnemyAttack() {
+        int causeDamage = Random.Range(30, 40);
+        _player.GetComponent<PlayerController>().TakeDamage(causeDamage);
+    }
 
+    public void TakeDamage(int damage) {
+        _bossStatus.life -= damage;
+        if(_bossStatus.life <= 0) {
+            Death();
+        }
+    }
+
+    public void Death() {
+        _bossAnimation.DeathAnimation();
+        _bossMovement.FallAfterDeath();
+        this.enabled = false;
+        _agent.enabled = false;
+        Destroy(gameObject, _timeToDestroyGameObject);
+    }
 }
