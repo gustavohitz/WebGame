@@ -15,6 +15,8 @@ public class BossBase : MonoBehaviour, IKillable {
 
     public GameObject medkitPrefab;
     public Slider bossLifeSlider;
+    public Image sliderImage;
+    public Color maxLifeColor, minLifeColor;
 
     void Start() {
         _player = GameObject.FindWithTag("Player").transform;
@@ -75,5 +77,12 @@ public class BossBase : MonoBehaviour, IKillable {
 
     void InterfaceUpdate() {
         bossLifeSlider.value = _bossStatus.life;
+
+        float lifePercentage = (float)_bossStatus.life / _bossStatus.startLife;
+        Color lifeColor = Color.Lerp(minLifeColor, maxLifeColor, lifePercentage);
+        sliderImage.color = lifeColor;
+        /*pego a vida atual, divido pela inicial para ver a porcentagem de vida que tenho.
+        o lerp faz uma interpolação de cores. No caso, entre o verde e o vermelho.
+        guardo a imagem da vida numa variável e mando essa cor para a slider.*/
     }
 }

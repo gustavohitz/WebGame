@@ -9,7 +9,7 @@ public class Billboard : MonoBehaviour {
     }
 
     void LookAtCamera() {
-        transform.LookAt(transform.position - Camera.main.transform.forward);
+        transform.LookAt(transform.position + Camera.main.transform.forward);
     }
 
 }

@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 792436001}
   - component: {fileID: 792436000}
   - component: {fileID: 792435999}
+  - component: {fileID: 792436002}
   m_Layer: 5
   m_Name: Boss Canvas
   m_TagString: Untagged
@@ -191,6 +192,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &792436002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792435997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9756f12bf2eeb4da0b40ea3fb35e94b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089547162
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1089547163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -370,7 +383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 53cb1cba19bb24c73926cf90e89160d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 73a6104185e6e4974b33221ec08039a4, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -661,6 +674,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   medkitPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
   bossLifeSlider: {fileID: 605006910}
+  sliderImage: {fileID: 2104416812}
+  maxLifeColor: {r: 0.07662869, g: 0.7735849, b: 0.08054708, a: 1}
+  minLifeColor: {r: 0.7830189, g: 0.19887543, b: 0.15881987, a: 1}
 --- !u!195 &2102393360
 NavMeshAgent:
   m_ObjectHideFlags: 0
