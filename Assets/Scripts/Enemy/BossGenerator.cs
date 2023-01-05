@@ -6,11 +6,11 @@ public class BossGenerator : MonoBehaviour {
 
     private float _timeToNextBossCreation = 0;
 
-    public float _timeBetweenBossCreation = 30f;
+    public float timeBetweenBossCreation = 30f;
     public GameObject bossPrefab;
 
     void Start() {
-        _timeToNextBossCreation = _timeBetweenBossCreation;
+        _timeToNextBossCreation = timeBetweenBossCreation;
     }
     void Update() {
         CreateBoss();
@@ -19,7 +19,7 @@ public class BossGenerator : MonoBehaviour {
     void CreateBoss() {
         if(Time.timeSinceLevelLoad > _timeToNextBossCreation) {
             Instantiate(bossPrefab, transform.position, Quaternion.identity);
-            _timeToNextBossCreation = Time.timeSinceLevelLoad + _timeBetweenBossCreation;
+            _timeToNextBossCreation = Time.timeSinceLevelLoad + timeBetweenBossCreation;
         }
     }
  

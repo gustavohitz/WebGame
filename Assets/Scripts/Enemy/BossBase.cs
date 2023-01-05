@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BossBase : MonoBehaviour, IKillable {
 
@@ -13,6 +14,7 @@ public class BossBase : MonoBehaviour, IKillable {
     private float _timeToDestroyGameObject = 2f;
 
     public GameObject medkitPrefab;
+    public Slider bossLifeSlider;
 
     void Start() {
         _player = GameObject.FindWithTag("Player").transform;
@@ -21,6 +23,9 @@ public class BossBase : MonoBehaviour, IKillable {
         _agent.speed = _bossStatus.speed;
         _bossAnimation = GetComponent<CharacterAnimation>();
         _bossMovement = GetComponent<CharacterMovement>();
+
+        bossLifeSlider.maxValue = _bossStatus.startLife;
+        InterfaceUpdate();
     }
     void FixedUpdate() {
         _agent.SetDestination(_player.position);
@@ -53,6 +58,7 @@ public class BossBase : MonoBehaviour, IKillable {
 
     public void TakeDamage(int damage) {
         _bossStatus.life -= damage;
+        InterfaceUpdate();
         if(_bossStatus.life <= 0) {
             Death();
         }
@@ -65,5 +71,9 @@ public class BossBase : MonoBehaviour, IKillable {
         _agent.enabled = false;
         Instantiate(medkitPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject, _timeToDestroyGameObject);
+    }
+
+    void InterfaceUpdate() {
+        bossLifeSlider.value = _bossStatus.life;
     }
 }
