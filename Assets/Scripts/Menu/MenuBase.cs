@@ -14,9 +14,19 @@ public class MenuBase : MonoBehaviour {
     }
 
     public void PlayGame() {
-        SceneManager.LoadScene("game");
+        StartCoroutine(ChangeScene("game"));
+    }
+
+    IEnumerator ChangeScene(string name) {
+        yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene(name);
     }
     public void QuitGame() {
+        StartCoroutine(Quit());
+    }
+
+    IEnumerator Quit() {
+        yield return new WaitForSeconds(.5f);
         Application.Quit();
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
