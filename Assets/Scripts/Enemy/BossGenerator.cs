@@ -35,9 +35,9 @@ public class BossGenerator : MonoBehaviour {
         float greatestDistance = 0;
 
         foreach(Transform position in possibleCreationPosition) {
-            float distanceBetweenPlayer = Vector3.Distance(position.position, _player.position); //calculei a distância entre a primeira posição e o jogador
-            if(distanceBetweenPlayer > greatestDistance) {
-                greatestDistance = distanceBetweenPlayer;
+            float distanceToPlayer = Vector3.Distance(position.position, _player.position); //calculei a distância entre a primeira posição e o jogador
+            if(distanceToPlayer > greatestDistance) {
+                greatestDistance = distanceToPlayer;
                 farthestPosition = position.position;
             }
         }
