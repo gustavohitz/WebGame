@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI survivingTimeTxt;
     public TextMeshProUGUI hiScoreTxt;
     public TextMeshProUGUI killedZombiesAmountText;
+    public TextMeshProUGUI bossWarningText;
 
     private PlayerController playerControllerScript;
     private float _savedHiScore;
@@ -24,6 +25,8 @@ public class UIManager : MonoBehaviour {
 
         lifeSlider.maxValue = playerControllerScript.playerStatus.life;
         UpdateLifeSlider();
+
+        bossWarningText.enabled = false;
 
         _savedHiScore = PlayerPrefs.GetFloat("HiScore"); //quando começar, o jogo busca na máquina o hiscore
     }
@@ -64,6 +67,26 @@ public class UIManager : MonoBehaviour {
     }
     public void Restart() {
         SceneManager.LoadScene("game");
+    }
+    public void ShowBossWarningText() {
+        StartCoroutine(DeactivateTextMeshPRO(2f, bossWarningText));
+    }
+    IEnumerator DeactivateTextMeshPRO(float durationTime, TextMeshProUGUI textToDeactivate) {
+        textToDeactivate.enabled = true;
+        Color textColor = textToDeactivate.color;
+        textColor.a = 1;
+        textToDeactivate.color = textColor;
+        yield return new WaitForSeconds(1);
+        float timer = 0;
+        while(textToDeactivate.color.a > 0) {
+            timer += Time.deltaTime / durationTime;
+            textColor.a = Mathf.Lerp(1, 0, timer); //alpha é um float, Mathf troca de um valor para outro.
+            textToDeactivate.color = textColor;
+            if(textToDeactivate.color.a <= 0) {
+                textToDeactivate.enabled = false;
+            }
+            yield return null;
+        }
     }
     
 }
