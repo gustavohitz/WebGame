@@ -677,6 +677,7 @@ MonoBehaviour:
   sliderImage: {fileID: 2104416812}
   maxLifeColor: {r: 0.07662869, g: 0.7735849, b: 0.08054708, a: 1}
   minLifeColor: {r: 0.7830189, g: 0.19887543, b: 0.15881987, a: 1}
+  bossBloodParticle: {fileID: 6394933205701692133, guid: 1fe5464ef9fe441949d2367d557ca3f1, type: 3}
 --- !u!195 &2102393360
 NavMeshAgent:
   m_ObjectHideFlags: 0

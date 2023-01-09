@@ -17,6 +17,7 @@ public class BossBase : MonoBehaviour, IKillable {
     public Slider bossLifeSlider;
     public Image sliderImage;
     public Color maxLifeColor, minLifeColor;
+    public GameObject bossBloodParticle;
 
     void Start() {
         _player = GameObject.FindWithTag("Player").transform;
@@ -64,6 +65,10 @@ public class BossBase : MonoBehaviour, IKillable {
         if(_bossStatus.life <= 0) {
             Death();
         }
+    }
+
+    public void ActivateBloodParticle(Vector3 position, Quaternion rotation) {
+        Instantiate(bossBloodParticle, position, rotation);
     }
 
     public void Death() {

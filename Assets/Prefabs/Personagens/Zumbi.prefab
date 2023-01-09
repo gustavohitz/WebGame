@@ -561,6 +561,7 @@ MonoBehaviour:
   tagToFind: Player
   deathSFX: {fileID: 8300000, guid: dc61b4efdf2d942769fd3aad9b46a737, type: 3}
   medkitPrefab: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
+  bloodParticle: {fileID: 6394933205701692133, guid: 1fe5464ef9fe441949d2367d557ca3f1, type: 3}
   zombieGenerator: {fileID: 0}
 --- !u!54 &5778004574093307327
 Rigidbody:

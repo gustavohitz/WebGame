@@ -9,6 +9,7 @@ public class ZombieBase : MonoBehaviour, IKillable {
     public string tagToFind = "Player";
     public AudioClip deathSFX;
     public GameObject medkitPrefab;
+    public GameObject bloodParticle;
     
     [HideInInspector]
     public ZombieGenerator zombieGenerator;
@@ -100,6 +101,10 @@ public class ZombieBase : MonoBehaviour, IKillable {
         if(_enemyStatus.life <= 0) {
             Death();
         }
+    }
+
+    public void ActivateBloodParticle(Vector3 position, Quaternion rotation) {
+        Instantiate(bloodParticle, position, rotation);
     }
 
     public void Death() {

@@ -19,21 +19,22 @@ public class Bullet : MonoBehaviour {
         _rigidbody.MovePosition(_rigidbody.position + transform.forward * speed * Time.deltaTime);
     }
     void OnTriggerEnter(Collider other) {
+        Quaternion rotationOppositeBullet = Quaternion.LookRotation(-transform.forward);
+        //a particula de sangue vai sair na direção oposta da bala
+
         switch(other.tag) {
             case "Enemy":
-                other.GetComponent<ZombieBase>().TakeDamage(1);
+                ZombieBase zombie = other.GetComponent<ZombieBase>();
+                zombie.TakeDamage(1);
+                zombie.ActivateBloodParticle(transform.position, rotationOppositeBullet);
                 break;
 
             case "Boss":
-                other.GetComponent<BossBase>().TakeDamage(1);
+                BossBase boss = other.GetComponent<BossBase>();
+                boss.TakeDamage(1);
+                boss.ActivateBloodParticle(transform.position, rotationOppositeBullet);
                 break;
         }
-        /*if(other.tag == "Enemy") {
-            other.GetComponent<ZombieBase>().TakeDamage(1);
-        }
-        else if(other.tag == "Boss") {
-            other.GetComponent<BossBase>().TakeDamage(1);
-        }*/
         
         Destroy(gameObject);
     }
